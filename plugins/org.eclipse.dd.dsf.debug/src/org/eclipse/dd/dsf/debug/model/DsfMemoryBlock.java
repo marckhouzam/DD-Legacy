@@ -512,6 +512,8 @@ public class DsfMemoryBlock extends PlatformObject implements IMemoryBlockExtens
 			                    drm.done();
 			                }
 			            });
+			    } else {
+			    	drm.done();
 			    }
 				
 			}
@@ -551,7 +553,9 @@ public class DsfMemoryBlock extends PlatformObject implements IMemoryBlockExtens
 			        // Go for it
 	    	        memoryService.setMemory(
 		    	  	      fContext, address, offset, fWordSize, bytes.length, bytes,
-		    	  	      new RequestMonitor(fRetrieval.getExecutor(), null));
+		    	  	      new RequestMonitor(fRetrieval.getExecutor(), drm));
+			    } else {
+			    	drm.done();
 			    }
 				
 			}
